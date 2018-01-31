@@ -55,7 +55,7 @@ end;
 
 procedure TForm1.MsgLoadUrl(var AMsg: TMessage);
 begin
-  chrm1.LoadURL('file:///JSWindowBindingWithFunction.html');
+  chrm1.LoadURL('file:///d:/dev/delphi/cef4delphitest/html/js/JSWindowBindingWithFunction.html');
 end;
 
 procedure TForm1.MsgOpenForm(var AMsg: TMessage);
