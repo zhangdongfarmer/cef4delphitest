@@ -39,7 +39,9 @@ object JSWindowBindingWithFunctionFrm: TJSWindowBindingWithFunctionFrm
       Margins.Right = 5
       Align = alClient
       TabOrder = 0
-      Text = 'file:///JSWindowBindingWithFunction.html'
+      Text = 
+        'file:///d:/dev/delphi/cef4delphitest/html/js/JSWindowBindingWith' +
+        'Function.html'
       OnDblClick = Edit1DblClick
       ExplicitHeight = 21
     end
