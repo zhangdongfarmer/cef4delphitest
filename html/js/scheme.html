@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a onclick="request()">request</a>
+
+<script>
+    alert('ok你好');
+    var request = function () {
+        //dadaHttpRequest();
+    }
+
+
+    /* 用XMLHTTPRequest来进行ajax异步数据交交互*/
+    //1.创建XMLHTTPRequest对象
+    var xmlhttp;
+    //最复杂的一步
+    function dadaHttpRequest(){
+        var username = 'abc';
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest;
+
+            //针对某些特定版本的mozillar浏览器的bug进行修正。
+            if (xmlhttp.overrideMimeType) {
+                xmlhttp.overrideMimeType('text/xml');
+            };
+
+        } else if (window.ActiveXObject){
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        };
+
+        //2.注册回调函数
+        //onreadystatechange是每次 readyState 属性改变的时候调用的事件句柄函数。
+        xmlhttp.onreadystatechange = callback;
+
+        //3.设置连接信息
+        //初始化HTTP请求参数，但是并不发送请求。
+        //第一个参数连接方式，第二是url地址,第三个true是异步连接，默认是异步
+        xmlhttp.open("GET","scheme.html",true);
+
+        /*******************************************/
+        /*如果是xmlhttp.open("GET","xhr.php",true);*/
+        /*    xmlhttp.send('name=' +username);     */
+        /*    不行的                               */
+        /*******************************************/
+
+        //使用post方式发送数据
+        //xmlhttp.open("POST","xhr.php",true);
+        //post需要自己设置http的请求头
+        //xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+        //4，发送数据，开始和服务器进行交互
+        //发送 HTTP 请求，使用传递给 open() 方法的参数，以及传递给该方法的可选请求体。
+        //中如果true, send这句话会立即执行
+        //如果是false（同步），send会在服务器数据回来才执行
+        xmlhttp.send(null);
+        //因为是get所以send中不需要内容
+        //xmlhttp.send('name=' +username);
+
+    }
+
+    //5回调函数,不同相应状态进行处理
+    function callback(){
+        //alert(xmlhttp.readyState);
+        //判断对象状态是交互完成，接收服务器返回的数据
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            //["dada","xiaoyin","liujie"]
+            //纯文本的数据
+            var responseText = xmlhttp.responseText;
+            var divNode = document.getElementById('box');
+            //6.将服务器的数据显示在客户端
+            divNode.innerHTML = responseText;
+        }
+    }
+
+</script>
+
+</body>
+</html>
